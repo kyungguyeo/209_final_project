@@ -1,42 +1,98 @@
 <html>
 <head>
-  <title>Google Maps API Demo</title>
-  <style type="text/css">
-      html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 100%; }
-    </style>
+	<title>Yelp Academic Dataset Visualization</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css">
 </head>
 <body>
-  <div id="map"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.15/d3.js"></script>
-  <script type="text/javascript">
-      var data;    
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 37.870, lng: -122.259},
-            zoom: 18
-          });
-        d3.json("Data/berkeley_businesses.json", function(obj) {
-          data = obj;
-          for (i in data) {
-            myLatLng = {lat: data[i]['latitude'], lng: data[i]['longitude']};
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map
-            });
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                var infoWindow = new google.maps.InfoWindow();
-                infoWindow.setContent(data[i]['name']);
-                infoWindow.open(map, marker);
-                }
-            })(marker, i));
-          }
-        });
-      }
-  </script>
-  <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo1vcjAVo442B3CGQu8GXkpdxU8mb6Ppg&callback=initMap">
-    </script>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Top</a></li>
+				<li><a href="#campus">Campus</a></li>
+				<li><a href="#business">Business</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div id="page1">
+		<h3>Please Choose a Campus:</h3>
+		<div class="schools" id="top">
+			<a href="#" id="umich"><img src="images/umich.png" style="width:9%;height:33%"></a>
+			<a href="#" id="penn"><img src="images/penn.png" style="width:9%;height:33%"></a>
+			<a href="#" id="harvard"><img src="images/harvard.png" style="width:9%;height:33%"></a>
+			<a href="#" id="cal"><img src="images/cal.png" style="width:9%;height:33%"></a>
+			<a href="#" id="umass"><img src="images/umass.png" style="width:9%;height:33%"></a>
+			<a href="#" id="vt"><img src="images/vt.png" style="width:9%;height:33%"></a>
+			<a href="#" id="nc"><img src="images/nc.png" style="width:9%;height:33%"></a>
+			<a href="#" id="uw"><img src="images/uw.png" style="width:9%;height:33%"></a>
+			<a href="#" id="utt"><img src="images/ut.png" style="width:9%;height:33%"></a>
+			<a href="#" id="usc"><img src="images/usc.png" style="width:9%;height:33%"></a>
+			<a href="#" id="ucla"><img src="images/ucla.png" style="width:9%;height:33%"></a>
+			<a href="#" id="ucsd"><img src="images/ucsd.png" style="width:9%;height:33%"></a>
+			<a href="#" id="ill"><img src="images/ill.png" style="width:9%;height:33%"></a>
+			<a href="#" id="purdue"><img src="images/purdue.png" style="width:9%;height:33%"></a>
+			<a href="#" id="princeton"><img src="images/princeton.png" style="width:9%;height:33%"></a>
+			<a href="#" id="mit"><img src="images/mit.png" style="width:9%;height:33%"></a>
+			<a href="#" id="harveymudd"><img src="images/harveymudd.png" style="width:9%;height:33%"></a>
+			<a href="#" id="stanford"><img src="images/stanford.png" style="width:9%;height:33%"></a>
+			<a href="#" id="carnegie"><img src="images/carnegie.png" style="width:9%;height:33%"></a>
+			<a href="#" id="columbia"><img src="images/columbia.png" style="width:9%;height:33%"></a>
+			<a href="#" id="cornell"><img src="images/cornell.png" style="width:9%;height:33%"></a>
+			<a href="#" id="gt"><img src="images/gt.png" style="width:9%;height:33%"></a>
+			<a href="#" id="rice"><img src="images/rice.png" style="width:9%;height:33%"></a>
+			<a href="#" id="rensselaer"><img src="images/rensselaer.png" style="width:9%;height:33%"></a>
+			<a href="#" id="brown"><img src="images/brown.png" style="width:9%;height:33%"></a>
+			<a href="#" id="caltech"><img src="images/caltech.png" style="width:9%;height:33%"></a>
+			<a href="#" id="cp"><img src="images/cp.png" style="width:9%;height:33%"></a>
+			<a href="#" id="maryland"><img src="images/maryland.png" style="width:9%;height:33%"></a>
+			<a href="#" id="waterloo"><img src="images/waterloo.png" style="width:9%;height:33%"></a>
+			<a href="#" id="wisconsin"><img src="images/wisconsin.jpg" style="width:9%;height:33%"></a>
+		</div>
+	</div>
+	<div id="page2">
+		<div id="campus">
+			<h3>Campus Name</h3>
+			<div class="row">
+				<div class="map col-md-4">
+					<img src="images/test_map.png" style="width:50%;height:20%">
+				</div>
+				<div class="col-md-8">
+					<div class="stats">
+						<ul>
+							<li>Stat#1</li>
+							<li>Stat#2</li>
+							<li>Stat#3</li>
+						</ul>
+					</div>
+					<div class="histogram">
+						<img src="images/test_histogram.png" style="width:60%;height:30%">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="page3">
+		<h3>Business Name</h3>
+		<div id="business">
+			<div class="row">
+				<div class="map col-md-4">
+					<img src="images/yelp_photo.png" style="width:50%;height:20%">
+				</div>
+				<div class="col-md-8">
+					<div class="stats">
+						<ul>
+							<li>Stat#1</li>
+							<li>Stat#2</li>
+							<li>Stat#3</li>
+						</ul>
+					</div>
+					<div class="histogram">
+						<img src="images/test_histogram.png" style="width:60%;height:30%">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

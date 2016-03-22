@@ -1,0 +1,24 @@
+body {
+    padding: 5%;
+}
+
+.schools {
+    height: 270px;
+    width: 1000px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#page1 {
+    height: 350px;
+}
+
+#page2 {
+    height: 1000px;
+    padding-top: 100px;
+}
+
+#page3 {
+    height: 1000px;
+}
