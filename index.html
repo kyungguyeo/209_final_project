@@ -1,12 +1,11 @@
 <html>
 <head>
 	<title>Yelp Academic Dataset Visualization</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-	<script src="scripts/script.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -19,46 +18,46 @@
 		</div>
 	</nav>
 	<div id="page1">
-		<h3>Please Choose a Campus:</h3>
 		<div class="schools" id="top">
-			<a href="#" id="umich"><img src="images/umich.png" style="width:9%;height:33%"></a>
-			<a href="#" id="penn"><img src="images/penn.png" style="width:9%;height:33%"></a>
-			<a href="#" id="harvard"><img src="images/harvard.png" style="width:9%;height:33%"></a>
-			<a href="#" id="cal"><img src="images/cal.png" style="width:9%;height:33%"></a>
-			<a href="#" id="umass"><img src="images/umass.png" style="width:9%;height:33%"></a>
-			<a href="#" id="vt"><img src="images/vt.png" style="width:9%;height:33%"></a>
-			<a href="#" id="nc"><img src="images/nc.png" style="width:9%;height:33%"></a>
-			<a href="#" id="uw"><img src="images/uw.png" style="width:9%;height:33%"></a>
-			<a href="#" id="utt"><img src="images/ut.png" style="width:9%;height:33%"></a>
-			<a href="#" id="usc"><img src="images/usc.png" style="width:9%;height:33%"></a>
-			<a href="#" id="ucla"><img src="images/ucla.png" style="width:9%;height:33%"></a>
-			<a href="#" id="ucsd"><img src="images/ucsd.png" style="width:9%;height:33%"></a>
-			<a href="#" id="ill"><img src="images/ill.png" style="width:9%;height:33%"></a>
-			<a href="#" id="purdue"><img src="images/purdue.png" style="width:9%;height:33%"></a>
-			<a href="#" id="princeton"><img src="images/princeton.png" style="width:9%;height:33%"></a>
-			<a href="#" id="mit"><img src="images/mit.png" style="width:9%;height:33%"></a>
-			<a href="#" id="harveymudd"><img src="images/harveymudd.png" style="width:9%;height:33%"></a>
-			<a href="#" id="stanford"><img src="images/stanford.png" style="width:9%;height:33%"></a>
-			<a href="#" id="carnegie"><img src="images/carnegie.png" style="width:9%;height:33%"></a>
-			<a href="#" id="columbia"><img src="images/columbia.png" style="width:9%;height:33%"></a>
-			<a href="#" id="cornell"><img src="images/cornell.png" style="width:9%;height:33%"></a>
-			<a href="#" id="gt"><img src="images/gt.png" style="width:9%;height:33%"></a>
-			<a href="#" id="rice"><img src="images/rice.png" style="width:9%;height:33%"></a>
-			<a href="#" id="rensselaer"><img src="images/rensselaer.png" style="width:9%;height:33%"></a>
-			<a href="#" id="brown"><img src="images/brown.png" style="width:9%;height:33%"></a>
-			<a href="#" id="caltech"><img src="images/caltech.png" style="width:9%;height:33%"></a>
-			<a href="#" id="cp"><img src="images/cp.png" style="width:9%;height:33%"></a>
-			<a href="#" id="maryland"><img src="images/maryland.png" style="width:9%;height:33%"></a>
-			<a href="#" id="waterloo"><img src="images/waterloo.png" style="width:9%;height:33%"></a>
-			<a href="#" id="wisconsin"><img src="images/wisconsin.jpg" style="width:9%;height:33%"></a>
+			<h3>Please Choose a Campus:</h3>
+			<a href="#campus" class="schoolbutton" id="umich"><img src="images/umich.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="penn"><img src="images/penn.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="harvard"><img src="images/harvard.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="cal"><img src="images/cal.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="umass"><img src="images/umass.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="vt"><img src="images/vt.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="unc"><img src="images/nc.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="uw"><img src="images/uw.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="utt"><img src="images/ut.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="usc"><img src="images/usc.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="ucla"><img src="images/ucla.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="ucsd"><img src="images/ucsd.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="ill"><img src="images/ill.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="purdue"><img src="images/purdue.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="princeton"><img src="images/princeton.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="mit"><img src="images/mit.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="harveymudd"><img src="images/harveymudd.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="stanford"><img src="images/stanford.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="carnegie"><img src="images/carnegie.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="columbia"><img src="images/columbia.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="cornell"><img src="images/cornell.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="gt"><img src="images/gt.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="rice"><img src="images/rice.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="rensselaer"><img src="images/rensselaer.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="brown"><img src="images/brown.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="caltech"><img src="images/caltech.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="cp"><img src="images/cp.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="maryland"><img src="images/maryland.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="waterloo"><img src="images/waterloo.png" style="width:9%;height:33%"></a>
+			<a href="#campus" class="schoolbutton" id="wisconsin"><img src="images/wisconsin.jpg" style="width:9%;height:33%"></a>
 		</div>
 	</div>
 	<div id="page2">
 		<div id="campus">
 			<h3>Campus Name</h3>
 			<div class="row">
-				<div class="map col-md-4">
-					<img src="images/test_map.png" style="width:50%;height:20%">
+				<div class="col-md-4" id="map">
+					
 				</div>
 				<div class="col-md-8">
 					<div class="stats">
@@ -69,17 +68,17 @@
 						</ul>
 					</div>
 					<div class="histogram">
-						<img src="images/test_histogram.png" style="width:60%;height:30%">
+						<img src="images/test_histogram.png" style="width:80%;height:50%">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="page3">
-		<h3>Business Name</h3>
 		<div id="business">
+			<h3>Business Name</h3>
 			<div class="row">
-				<div class="map col-md-4">
+				<div class="col-md-4">
 					<img src="images/yelp_photo.png" style="width:50%;height:20%">
 				</div>
 				<div class="col-md-8">
@@ -142,5 +141,13 @@
 		</div>
 </div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.15/d3.js"></script>
+	<script src="scripts/script.js"></script>
+	<script src="scripts/campus_map.js"></script>
+	<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo1vcjAVo442B3CGQu8GXkpdxU8mb6Ppg&callback=initMap">
+    </script>
 </body>
 </html>
