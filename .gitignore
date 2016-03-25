@@ -67,4 +67,4 @@ target/
 #No Data
 *.json
 *.csv
-*.xslx
+*.xlsx
