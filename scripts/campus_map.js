@@ -14,7 +14,7 @@ function initMap() {
 		lt = parseFloat(latitude);
 		var map = new google.maps.Map(document.getElementById('map'), {
 			center: {lat: lg, lng: lt},//new google.maps.LatLng(latitude, longitude),
-			zoom: 14
+			zoom: 20
 			});
 		// var marker = new google.maps.Marker({
 		// 	position: {lat: lg, lng: lt},
@@ -22,22 +22,25 @@ function initMap() {
 		// 	});
 		campus_data = campus_businesses[current_campus];
 		var bounds = new google.maps.LatLngBounds();
-		for (i in campus_data) {
-			myLatLng = {lat: campus_data[i]['latitude'], lng: campus_data[i]['longitude']};
-			var marker = new google.maps.Marker({
-				position: myLatLng,
-				map: map
-				});
-			bounds.extend(marker.getPosition());
-			google.maps.event.addListener(marker, 'click', (function(marker, i) {
-				return function() {
-					var infoWindow = new google.maps.InfoWindow();
-					infoWindow.setContent(campus_data[i]['name']);
-					infoWindow.open(map, marker);
-					}	
-				})(marker, i));
-			}
-		map.fitBounds(bounds);
+		if (campus_data !== undefined) {
+			for (i in campus_data) {
+				myLatLng = {lat: campus_data[i]['latitude'], lng: campus_data[i]['longitude']};
+				var marker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					icon: 'icons/' + current_campus + '.ico'
+					});
+				bounds.extend(marker.getPosition());
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						var infoWindow = new google.maps.InfoWindow();
+						infoWindow.setContent(campus_data[i]['name']);
+						infoWindow.open(map, marker);
+						}	
+					})(marker, i));
+				}
+			map.fitBounds(bounds);
+		}
 		});
 	})
 };
