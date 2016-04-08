@@ -8,7 +8,7 @@ $(document).ready(function() {
 		'vt': 'Virginia Tech',
 		'unc': 'University of North Carolina - Chapel Hill',
 		'uw': 'University of Washington',
-		'utt': 'University of Texas - Austin',
+		// 'utt': 'University of Texas - Austin',
 		'usc': 'University of Southern California',
 		'ucla': 'University of California - Los Angeles',
 		'ucsd': 'University of California - San Diego',
@@ -28,8 +28,8 @@ $(document).ready(function() {
 		'caltech': 'California Institute of Technology',
 		'cp': 'California Polytechnic State University',
 		'maryland': 'University of Maryland - College Park',
-		'waterloo': 'University of Waterloo',
-		'wisconsin': 'University of Wisconsin'
+		'waterloo': 'University of Waterloo'
+		// 'wisconsin': 'University of Wisconsin'
 	}
 	$('#panel').click(function() {
 		$('.from-right').addClass('is-visible')
@@ -38,5 +38,5 @@ $(document).ready(function() {
 		$('.campus-title').remove();
 		$('#campus').prepend("<h3 class='campus-title'>" + campus_key[$(this).attr('id')] + "</h3>");
 	})
-
+	$("#comments-panel").hide();
 })

@@ -4,17 +4,21 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="icons/favicon.ico">
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Top</a></li>
-				<li><a href="#campus">Campus</a></li>
-				<li><a href="#business">Business</a></li>
-			</ul>
-		</div>
-	</nav>
+	<div id="wrap">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Top</a></li>
+					<li><a href="#campus">Campus</a></li>
+					<li><a href="#business">Business</a></li>
+				</ul>
+			</div>
+		</nav>
+	<div id="main">
 	<div id="page1">
 		<div class="schools" id="top">
 			<h3>Please Choose a Campus:</h3>
@@ -26,7 +30,7 @@
 			<a href="#campus" class="schoolbutton" id="vt"><img src="images/vt.png" style="width:9%;height:33%"></a>
 			<a href="#campus" class="schoolbutton" id="unc"><img src="images/unc.png" style="width:9%;height:33%"></a>
 			<a href="#campus" class="schoolbutton" id="uw"><img src="images/uw.png" style="width:9%;height:33%"></a>
-			<a href="#campus" class="schoolbutton" id="ut"><img src="images/ut.png" style="width:9%;height:33%"></a>
+			<!-- <a href="#campus" class="schoolbutton" id="ut"><img src="images/ut.png" style="width:9%;height:33%"></a> -->
 			<a href="#campus" class="schoolbutton" id="usc"><img src="images/usc.png" style="width:9%;height:33%"></a>
 			<a href="#campus" class="schoolbutton" id="ucla"><img src="images/ucla.png" style="width:9%;height:33%"></a>
 			<a href="#campus" class="schoolbutton" id="ucsd"><img src="images/ucsd.png" style="width:9%;height:33%"></a>
@@ -47,15 +51,16 @@
 			<a href="#campus" class="schoolbutton" id="cp"><img src="images/cp.png" style="width:9%;height:33%"></a>
 			<a href="#campus" class="schoolbutton" id="maryland"><img src="images/maryland.png" style="width:9%;height:33%"></a>
 			<a href="#campus" class="schoolbutton" id="waterloo"><img src="images/waterloo.png" style="width:9%;height:33%"></a>
-			<a href="#campus" class="schoolbutton" id="wisconsin"><img src="images/wisconsin.jpg" style="width:9%;height:33%"></a>
+			<!-- <a href="#campus" class="schoolbutton" id="wisconsin"><img src="images/wisconsin.jpg" style="width:9%;height:33%"></a> -->
 		</div>
 	</div>
+	<p style="text-align:right;"><i><small>UT Austin and University of Wisconsin are omitted from this analysis due to missing data.</small></i></p>
 	<div id="page2">
 		<div id="campus">
-			<h3 class="campus-title">Campus Name</h3>
+			<h3 class="campus-title"></h3>
 			<div class="row">
 				<div class="col-md-4" id="map">
-					<img src="images/test_map.png" style="width:70%;height:80%" class="campus-title">
+					<p class="campus-title"></p>
 				</div>
 				<div class="col-md-8">
 					<div class="stats">
@@ -74,10 +79,10 @@
 	</div>
 	<div id="page3">
 		<div id="business">
-			<h3 class="biz-title">Business Name</h3>
+			<h3 class="biz-title"></h3>
 			<div class="row">
 				<div class="col-md-4" id="biz">
-					<img src="images/yelp_photo.png" style="width:50%;height:20%" class="biz-photo">
+					<p class="biz-photo"></p>
 				</div>
 				<div class="col-md-8">
 					<div class="stats">
@@ -88,64 +93,112 @@
 						</ul>
 					</div>
 					<div class="histogram">
+						<div class="review-count"></div>
 						<img src="images/test_histogram.png" style="width:60%;height:30%">
 					</div>
 				</div>
 			</div>
+			<div id="comments-panel">
+				<h3>Top Voted Comments</h3>
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h4 class="panel-title">
-								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									Yelp Review #1
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="panelheader1">
+									<p class="votes" id="laugh1">
+										<img src='images/laugh.png' style='width:30px;height:30px' title='funny'></p>
+									<p class="votes" id="cool1">
+										<img src='images/cool.png' style='width:30px;height:30px' title='cool'>
+									</p>
+									<p class="votes" id="useful1">
+										<img src='images/useful.png' style='width:30px;height:30px' title='useful'>
+									</p>
+									<div class="votes" id="star1">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="1star1">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="1star2">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="1star3">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="1star4">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="1star5">
+									</div>
 								</a>
 							</h4>
+							<em id="date1"></em>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							</div>
+							<div class="panel-body" id="panelbody1"></div>
 						</div>
 					</div>
 				<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title">
-								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									Yelp Review #2
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="panelheader2">
+									<p class="votes" id="laugh2">
+										<img src='images/laugh.png' style='width:30px;height:30px' title='funny'>
+									</p>
+									<p class="votes" id="cool2">
+										<img src='images/cool.png' style='width:30px;height:30px' title='cool'>
+									</p>
+									<p class="votes" id="useful2">
+										<img src='images/useful.png' style='width:30px;height:30px' title='useful'>
+									</p>
+									<div class="votes" id="star2">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="2star1">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="2star2">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="2star3">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="2star4">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="2star5">
+									</div>
 								</a>
 							</h4>
+							<em id="date2"></em>
 						</div>
 						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							</div>
+							<div class="panel-body" id="panelbody2"></div>
 						</div>
 				</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title">
-								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									Yelp Review #3
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="panelheader3">
+									<p class="votes" id="laugh3">
+										<img src='images/laugh.png' style='width:30px;height:30px' title='funny'>
+									</p>
+									<p class="votes" id="cool3">
+										<img src='images/cool.png' style='width:30px;height:30px' title='cool'>
+									</p>
+									<p class="votes" id="useful3">
+										<img src='images/useful.png' style='width:30px;height:30px' title='useful'>
+									</p>
+									<div class="votes" id="star3">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="3star1">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="3star2">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="3star3">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="3star4">
+										<img src='images/star.png' style='width:30px;height:30px;opacity:0' title='rating' class="3star5">
+									</div>
 								</a>
 							</h4>
+							<em id="date3"></em>
 						</div>
 						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							</div>
+							<div class="panel-body" id="panelbody3"></div>
 						</div>
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
 	</div>
-	<footer class="footer">
-    	<div class="container">
-    		<p class="text-muted" style="text-align:center">This project was created by Max Shen, Evyatar Ram, and Johnny Yeo.</p>
-    		<p class="text-muted" style="text-align:center">For project code, click below:</p>
-    		<a href="https://github.com/kyungguyeo/209_final_project" target='_blank'><img src='images/GitHub-Mark-64px.png' style="width:32px;height:32px;display:block;margin:0 auto"></a>
-    	</div>
-    </footer>
+	</div>
+	</div>
+	<div id="footer">
+		<div>
+			<p class="text-muted" style="text-align:center">This project was created by Max Shen, Evyatar Ram, and Johnny Yeo using the <a target="_blank" href="https://www.yelp.com/academic_dataset">Yelp Academic Dataset</a>.</p>
+			<p class="text-muted" style="text-align:center">To have a more rich dataset, only the restaurant business data with over 15 reviews was used.</p>
+			<p class="text-muted" style="text-align:center">For project code, click below:</p>
+			<a href="https://github.com/kyungguyeo/209_final_project" target='_blank'><img src='images/GitHub-Mark-64px.png' style="width:32px;height:32px;display:block;margin:0 auto"></a>
+		</div>
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.15/d3.js"></script>
