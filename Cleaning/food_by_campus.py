@@ -38,6 +38,7 @@ cat_ref = ['Food', 'Bagels', 'Bakeries', 'Beer, Wine & Spirits', 'Breweries', 'B
 
 businesses = {}
 reviews = {}
+business_star_stats = {}
 with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/yelp_academic_dataset.json') as datafile:
 	for i in datafile:
 		data = json.loads(i)
@@ -54,8 +55,15 @@ with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProje
 				if not reviews.get(data['business_id']):
 					reviews[data['business_id']] = {}
 					reviews[data['business_id']][data['review_id']] = data
+					business_star_stats[data['business_id']] = {}
+					business_star_stats[data['business_id']][data['stars']] = 1
 				else:
 					reviews[data['business_id']][data['review_id']] = data
+					if not business_star_stats[data['business_id']].get(data['stars']):
+						business_star_stats[data['business_id']][data['stars']] = 1
+					else:
+						business_star_stats[data['business_id']][data['stars']] += 1
+
 highest_reviews = {}
 for business_id in reviews:
 	buss = reviews[business_id]
@@ -68,3 +76,5 @@ with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProje
 	json.dump(businesses,f)
 with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/highest_reviews_by_business.json', 'w') as f:
 	json.dump(highest_reviews,f)
+with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/business_star_stats.json', 'w') as f:
+	json.dump(business_star_stats,f)

@@ -1,6 +1,7 @@
 var data;    
 var campus_businesses;
 var highest_reviews;
+var star_stats;
 var myStyle = [
   {
     featureType: "poi",
@@ -15,6 +16,9 @@ d3.json("209_FinalProject_Data/food_businesses_by_campus.json", function(obj) {
 });
 d3.json("209_FinalProject_Data/highest_reviews_by_business.json", function(obj) {
   highest_reviews = obj;
+});
+d3.json("209_FinalProject_Data/business_star_stats.json", function(obj) {
+  star_stats = obj;
 });
 function initMap() {
 	d3.csv("209_FinalProject_Data/school_coords.csv", function(obj) {
@@ -75,11 +79,13 @@ function initMap() {
 							$('#cool' + count).html("<img src='images/cool.png' style='width:30px;height:30px' title='cool'>" + vote_cool);
 							$('#useful' + count).html("<img src='images/useful.png' style='width:30px;height:30px' title='useful'>" + vote_useful);
 							$("#date" + count).text(date)
-							for (i=5; i>5-stars; i--) {
-								$("." + count + "star" + i).css('opacity','1');
+							for (i=1; i<=stars; i++) {
+								$("." + count + "star" + i).css('opacity','1').attr('title',stars + ' stars');
 							}
 							count++;
 							}
+						//histogram of star reviews
+						
 						$("html, body").scrollTop($('#page3').offset().top);
 						}
 					})(marker, i));
