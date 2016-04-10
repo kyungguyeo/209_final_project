@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.bar {
+  fill: darkorange;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+<a href="#campus" class="schoolbutton" id="umich" OnClick="update(this.id)"><img src="images/umich.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="penn" OnClick="update(this.id)"><img src="images/penn.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="harvard" OnClick="update(this.id)"><img src="images/harvard.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="cal" OnClick="update(this.id)"><img src="images/cal.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="umass" OnClick="update(this.id)"><img src="images/umass.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="vt" OnClick="update(this.id)"><img src="images/vt.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="unc" OnClick="update(this.id)"><img src="images/unc.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="uw" OnClick="update(this.id)"><img src="images/uw.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="usc" OnClick="update(this.id)"><img src="images/usc.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="ucla" OnClick="update(this.id)"><img src="images/ucla.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="ucsd" OnClick="update(this.id)"><img src="images/ucsd.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="ill" OnClick="update(this.id)"><img src="images/ill.png" style="width:9%;height:9"></a>
+<a href="#campus" class="schoolbutton" id="purdue" OnClick="update(this.id)"><img src="images/purdue.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="princeton" OnClick="update(this.id)"><img src="images/princeton.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="mit" OnClick="update(this.id)"><img src="images/mit.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="harveymudd" OnClick="update(this.id)"><img src="images/harveymudd.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="stanford" OnClick="update(this.id)"><img src="images/stanford.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="carnegie" OnClick="update(this.id)"><img src="images/carnegie.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="columbia" OnClick="update(this.id)"><img src="images/columbia.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="cornell" OnClick="update(this.id)"><img src="images/cornell.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="gt" OnClick="update(this.id)"><img src="images/gt.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="rice" OnClick="update(this.id)"><img src="images/rice.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="rensselaer" OnClick="update(this.id)"><img src="images/rensselaer.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="brown" OnClick="update(this.id)"><img src="images/brown.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="caltech" OnClick="update(this.id)"><img src="images/caltech.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="cp" OnClick="update(this.id)"><img src="images/cp.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="maryland" OnClick="update(this.id)"><img src="images/maryland.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="waterloo" OnClick="update(this.id)"><img src="images/waterloo.png" style="width:9%;height:9%"></a>
+<body>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<script>
+
+//Beginning of d3 code
+var margin = {top: 20, right: 20, bottom: 30, left: 150},
+    width = 960 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
+    padding = -150;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");    
+
+update('cal')  //Initial output when user first launch the site
+
+function update(data_in) {
+
+d3.tsv("data.tsv", function(error, data) {
+  
+   a = data_in;
+   b = data_in + "_" + "count"; //Review Count
+   
+  
+   //This code needs to be line up with the naming above to work properly
+   //SRC="/Users/Maximus/Desktop/W209_DB/Final Project/images.png"></a>
+   data.forEach(function(d) {
+    d[b] = +d[b]; 
+    });
+  
+  x.domain(data.map(function(d) { return d[a]; }));
+  y.domain([0, d3.max(data, function(d) { return d[b]; })]);  //Setting range for y
+
+  
+    var trans = d3.select("body").transition().duration(200);
+        delay = function(d, i) { return i * 5; };
+      
+      var rect = svg.selectAll(".bar")
+                    .data(data);
+
+
+           //re-append chart with new data         
+          rect.enter().append("rect")
+
+          rect
+             .attr("class", "bar")
+             .attr("x", function(d) { return x(d[a]); })
+             .attr("width", x.rangeBand())
+             .attr("y", function(d) { return y(d[b]); })
+             .transition()
+             .delay(function(d, i) { return i * 100; })
+             .duration(200)
+             .attr("height", function(d) { return height - y(d[b]); });
+              //.duration(850)
+              //.delay(delay);   //- y(d[b]
+
+
+ svg.select("text").remove();  //Remove Title
+
+ svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 3))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Top 10 Food Categories if you are around: " + a );
+
+ svg.select(".x.axis").remove(); //Remove previous x axis
+
+ svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);     
+
+
+ svg.select(".y.axis").remove(); //Remove previous y-axis
+
+ svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)  
+    .append("text")
+    .attr("transform", "translate("+ (padding/2) +","+(height/2)+")rotate(-90)")
+    .attr("y", 10)
+    .attr("dy", ".90em")
+    .style("font-size", "16px")
+    .style("text-anchor", "end")
+    .text("Average Reviews ");
+
+
+//remove existing image when doing the transition
+rect.exit().transition().remove();   
+
+  });
+}
+
+
+
+</script>
