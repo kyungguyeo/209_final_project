@@ -280,11 +280,11 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
 
 
     //Don't know how to update!!!
-    d3.selectAll(".schoolbutton").on("click", function() {
-      campus = $(this).attr('id');
-      thisdata[0].measures = data[campus][0].measures;
-      thisdata[1].measures = data[campus][1].measures;
-      thisdata[2].measures = data[campus][2].measures;
-      svg.data(thisdata).call(chart.duration(1000));
-    });
+    // d3.selectAll(".schoolbutton").on("click", function() {
+    //   campus = $(this).attr('id');
+    //   thisdata[0].measures = data[campus][0].measures;
+    //   thisdata[1].measures = data[campus][1].measures;
+    //   thisdata[2].measures = data[campus][2].measures;
+    //   svg.data(thisdata).call(chart.duration(1000));
+    // });
   });

@@ -149,11 +149,11 @@ html, body {height: 100%;}
   margin: 0;
 }
 
-.bullet { font: 10px sans-serif; }
-.bullet .marker { stroke: #000; stroke-width: 2px; }
-.bullet .tick line { stroke: #666; stroke-width: .5px; }
-.bullet .range { fill: #eee; }
-.bullet .measure { fill: darkorange; }
-.bullet .title { font-size: 14px; }
+.campusbullet { font: 10px sans-serif; }
+.campusbullet .campusmarker { stroke: #000; stroke-width: 2px; }
+.campusbullet .campustick line { stroke: #666; stroke-width: .5px; }
+.campusbullet .campusrange { fill: #eee; }
+.campusbullet .campusmeasure { fill: darkorange; }
+.campusbullet .campustitle { font-size: 14px; }
 
 

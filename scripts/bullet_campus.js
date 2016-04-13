@@ -40,11 +40,11 @@ d3.bullet = function() {
           w1 = bulletWidth(x1);
 
       // Update the range rects.
-      var range = g.selectAll("rect.range")
+      var range = g.selectAll("rect.campusrange")
           .data(rangez);
 
       range.enter().append("rect")
-          .attr("class", function(d, i) { return "range s" + i; })
+          .attr("class", function(d, i) { return "campusrange s" + i; })
           .attr("width", w0)
           .attr("height", height)
           .attr("x", reverse ? x0 : 0)
@@ -60,11 +60,11 @@ d3.bullet = function() {
           .attr("height", height);
 
       // Update the measure rects.
-      var measure = g.selectAll("rect.measure")
+      var measure = g.selectAll("rect.campusmeasure")
           .data(measurez);
 
       measure.enter().append("rect")
-          .attr("class", function(d, i) { return "measure s" + i; })
+          .attr("class", function(d, i) { return "campusmeasure s" + i; })
           .attr("width", w0)
           .attr("height", height / 3)
           .attr("x", reverse ? x0 : 0)
@@ -82,11 +82,11 @@ d3.bullet = function() {
           .attr("y", height / 3);
 
       // Update the marker lines.
-      var marker = g.selectAll("line.marker")
+      var marker = g.selectAll("line.campusmarker")
           .data(markerz);
 
       marker.enter().append("line")
-          .attr("class", "marker")
+          .attr("class", "campusmarker")
           .attr("x1", x0)
           .attr("x2", x0)
           .attr("y1", height / 6)
@@ -107,14 +107,14 @@ d3.bullet = function() {
       var format = tickFormat || x1.tickFormat(6);
 
       // Update the tick groups.
-      var tick = g.selectAll("g.tick")
+      var tick = g.selectAll("g.campustick")
           .data(x1.ticks(6), function(d) {
             return this.textContent || format(d);
           });
 
       // Initialize the ticks with the old scale, x0.
       var tickEnter = tick.enter().append("g")
-          .attr("class", "tick")
+          .attr("class", "campustick")
           .attr("transform", bulletTranslate(x0))
           .style("opacity", 1e-6);
 
@@ -245,7 +245,7 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
     width = 765 - margin.left - margin.right,
     height = 50 - margin.top - margin.bottom;
 
-  var chart = d3.bullet()
+  var chart_campus = d3.bullet()
       .width(width)
       .height(height);
   
@@ -253,39 +253,39 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
   d3.json("../209_FinalProject_Data/campus_star_stats.json", function(error, data) {
     if (error) throw error;    
     campus_data = data;
-    thisdata = data['cal'];
+    thiscampusdata = data['cal'];
     var svg = d3.select(".bullet-campus").selectAll("svg")
-        .data(thisdata)
+        .data(thiscampusdata)
       .enter().append("svg")
-        .attr("class", "bullet")
+        .attr("class", "campusbullet")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .call(chart);
+        .call(chart_campus);
 
     var title = svg.append("g")
         .style("text-anchor", "end")
         .attr("transform", "translate(-6," + height / 2 + ")");
 
     title.append("text")
-        .attr("class", "title")
+        .attr("class", "campustitle")
         .text(function(d) { return d.title; });
 
     title.append("text")
-      .attr("class", "subtitle")
+      .attr("class", "campussubtitle")
       .attr("dy", "1em")
       .attr("style","font-style: italic;")
       .text(function(d) { return d.subtitle; });
 
     d3.selectAll(".schoolbutton").on("click", function() {
       campus = $(this).attr('id');
-      thisdata[0].measures = data[campus][0].measures;
-      thisdata[0].subtitle = data[campus][0].subtitle;
-      thisdata[1].measures = data[campus][1].measures;
-      thisdata[1].subtitle = data[campus][1].subtitle;
-      svg.data(thisdata).call(chart.duration(1000));
-      $('.subtitle').first().text(thisdata[0].subtitle);
-      $('.subtitle').last().text(thisdata[1].subtitle);
+      thiscampusdata[0].measures = data[campus][0].measures;
+      thiscampusdata[0].subtitle = data[campus][0].subtitle;
+      thiscampusdata[1].measures = data[campus][1].measures;
+      thiscampusdata[1].subtitle = data[campus][1].subtitle;
+      svg.data(thiscampusdata).call(chart_campus.duration(1000));
+      $('.campussubtitle').first().text(thiscampusdata[0].subtitle);
+      $('.campussubtitle').last().text(thiscampusdata[1].subtitle);
     });
   });
