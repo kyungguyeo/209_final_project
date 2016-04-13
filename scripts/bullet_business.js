@@ -242,18 +242,20 @@ function bulletWidth(x) {
 
 
 var margin = {top: 5, right: 40, bottom: 20, left: 200},
-    width = 960 - margin.left - margin.right,
+    width = 765 - margin.left - margin.right,
     height = 50 - margin.top - margin.bottom;
 
   var chart = d3.bullet()
       .width(width)
       .height(height);
-
-  d3.json("../209_FinalProject_Data/bullets.json", function(error, data) {
-    if (error) throw error;
-
-    var svg = d3.select(".bullet-campus").selectAll("svg")
-        .data(data)
+  
+  var businesses_data;
+  d3.json("../209_FinalProject_Data/stats_by_business.json", function(error, data) {
+    if (error) throw error;    
+    businesses_data = data;
+    thisdata = data['9OhPfV0C3Q49l5tSre2MuQ'];
+    var svg = d3.select(".bullet-business").selectAll("svg")
+        .data(thisdata)
       .enter().append("svg")
         .attr("class", "bullet")
         .attr("width", width + margin.left + margin.right)
@@ -276,22 +278,13 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
       .attr("style","font-style: italic;")
       .text(function(d) { return d.subtitle; });
 
-    d3.selectAll("button").on("click", function() {
-      svg.datum(randomize).call(chart.duration(1000)); // TODO automatic transition
+
+    //Don't know how to update!!!
+    d3.selectAll(".schoolbutton").on("click", function() {
+      campus = $(this).attr('id');
+      thisdata[0].measures = data[campus][0].measures;
+      thisdata[1].measures = data[campus][1].measures;
+      thisdata[2].measures = data[campus][2].measures;
+      svg.data(thisdata).call(chart.duration(1000));
     });
   });
-
-  function randomize(d) {
-    if (!d.randomizer) d.randomizer = randomizer(d);
-    d.ranges = d.ranges.map(d.randomizer);
-    d.markers = d.markers.map(d.randomizer);
-    d.measures = d.measures.map(d.randomizer);
-    return d;
-  }
-
-  function randomizer(d) {
-    var k = d3.max(d.ranges) * .2;
-    return function(d) {
-      return Math.max(0, d + k * (Math.random() - .5));
-    };
-  }

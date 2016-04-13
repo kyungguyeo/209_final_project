@@ -34,7 +34,7 @@ campus_key = {
 
 //Beginning of d3 code
   var hist_margin = {top: 25, right: 20, bottom: 20, left: 150},
-      hist_width = 860 - hist_margin.left - hist_margin.right,
+      hist_width = 765 - hist_margin.left - hist_margin.right,
       hist_height = 300 - hist_margin.top - hist_margin.bottom;
       padding = -150;
 
@@ -58,6 +58,8 @@ campus_key = {
       .attr("height", hist_height + hist_margin.top + hist_margin.bottom)
       .append("g")
       .attr("transform", "translate(" + hist_margin.left + "," + hist_margin.top + ")");      
+
+  update('cal');
 
 function update(data_in) {
 

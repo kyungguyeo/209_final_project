@@ -36,76 +36,65 @@ campus_key = {
 cat_ref = ['Food', 'Bagels', 'Bakeries', 'Beer, Wine & Spirits', 'Breweries', 'Bubble Tea', 'Butcher', 'CSA', 'Coffee & Tea', 'Convenience Stores', 'Desserts', 'Do-It-Yourself Food', 'Donuts', 'Farmers Market', 'Food Delivery Services', 'Food Trucks', 'Gelato', 'Grocery', 'Ice Cream & Frozen Yogurt', 'Internet Cafes', 'Juice Bars & Smoothies', 'Pretzels', 'Shaved Ice', 'Specialty Food', 'Candy Stores', 'Cheese Shops', 'Chocolatiers & Shops', 'Ethnic Food', 'Fruits & Veggies', 'Health Markets', 'Herbs & Spices', 'Meat Shops', 'Seafood Markets', 'Street Vendors', 'Tea Rooms', 'Wineries', 'Afghan', 'African', 'American (New)', 'American (Traditional)', 'Arabian', 'Argentine', 'Armenian', 'Asian Fusion', 'Australian', 'Austrian', 'Bangladeshi', 'Barbeque', 'Basque', 'Belgian', 'Brasseries', 'Brazilian', 'Breakfast & Brunch', 'British', 'Buffets', 'Burgers', 'Burmese', 'Cafes', 'Cafeteria', 'Cajun/Creole', 'Cambodian', 'Caribbean', 'Catalan', 'Cheesesteaks', 'Chicken Wings', 'Chinese', 'Comfort Food', 'Creperies', 'Cuban', 'Czech', 'Delis', 'Diners', 'Ethiopian', 'Fast Food', 'Filipino', 'Fish & Chips', 'Fondue', 'Food Court', 'Food Stands', 'French', 'Gastropubs', 'German', 'Gluten-Free', 'Greek', 'Halal', 'Hawaiian', 'Himalayan/Nepalese', 'Hot Dogs', 'Hot Pot', 'Hungarian', 'Iberian', 'Indian', 'Indonesian', 'Irish', 'Italian', 'Japanese', 'Korean', 'Kosher', 'Laotian', 'Latin American', 'Live/Raw Food', 'Malaysian', 'Meditteranean', 'Mexican', 'Middle Eastern', 'Modern European', 'Mongolian', 'Pakistani', 'Persian/Iranian', 'Peruvian', 'Pizza', 'Polish', 'Portuguese', 'Russian', 'Salad', 'Sandwiches', 'Scandinavian', 'Scottish', 'Seafood', 'Singaporean', 'Slovakian', 'Soul Food', 'Soup', 'Southern', 'Spanish', 'Steakhouses', 'Sushi Bars', 'Taiwanese', 'Tapas Bars', 'Tapas/Small Plates', 'Tex-Mex', 'Thai', 'Turkish', 'Ukranian', 'Vegan', 'Vegetarian', 'Vietnamese', 'Columbian', 'Salvadoran', 'Venezuelan', 'Egyptian', 'Lebanese', 'Dominican', 'Haitian', 'Puerto Rican', 'Trinidadian', 'Cantonese', 'Dim Sum', 'Shanghainese', 'Szechuan', 'Senegalese', 'South African', 'Restaurants'
 ]
 
+#average review for each business
+rev_by_biz = {}
 businesses = {}
-reviews = {}
-business_star_stats = {}
 with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/yelp_academic_dataset.json') as datafile:
 	for i in datafile:
 		data = json.loads(i)
 		if data['type']=='business' and data['review_count'] > 15:
 			good_cats = [x for x in data['categories'] if x in cat_ref]
 			if good_cats:
-				for school in data['schools']:
-					if not businesses.get(campus_key[school]):
-						businesses[campus_key[school]] = {}
-						businesses[campus_key[school]][data['business_id']] = data
-					else:
-						businesses[campus_key[school]][data['business_id']] = data
-		elif data['type']=='review':
-				if not reviews.get(data['business_id']):
-					reviews[data['business_id']] = {}
-					reviews[data['business_id']][data['review_id']] = data
-					business_star_stats[data['business_id']] = {}
-					business_star_stats[data['business_id']][data['stars']] = 1
-				else:
-					reviews[data['business_id']][data['review_id']] = data
-					if not business_star_stats[data['business_id']].get(data['stars']):
-						business_star_stats[data['business_id']][data['stars']] = 1
-					else:
-						business_star_stats[data['business_id']][data['stars']] += 1
+				businesses[data['business_id']] = data
+		elif data['type'] == 'review':
+			if not rev_by_biz.get(data['business_id']):
+				rev_by_biz[data['business_id']] = {'review':0, 'count':0}
+				rev_by_biz[data['business_id']]['review'] += data['stars']
+				rev_by_biz[data['business_id']]['count'] += 1
+			else:
+				rev_by_biz[data['business_id']]['review'] += data['stars']
+				rev_by_biz[data['business_id']]['count'] += 1
+averages = 0
+counts = 0
+for biz in rev_by_biz:
+	averages += rev_by_biz[biz]['review']
+	counts += rev_by_biz[biz]['count']
+averages = round(averages*1.0/counts,2)
 
-highest_reviews = {}
-for business_id in reviews:
-	buss = reviews[business_id]
-	highest_reviews[business_id] = collections.OrderedDict()
-	sorted_buss_ids = sorted(buss, key=lambda j: sum(buss[j]['votes'].values()), reverse=True)[0:3]
-	for rev_id in sorted_buss_ids:
-		highest_reviews[business_id][rev_id] = buss[rev_id]
+#average review for each campus
+with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/campus_star_stats.json') as datafile:
+	for i in datafile:
+		data = json.loads(i)
+		revs_by_campus = data
 
-#Average Star Review & No. of Reviews by campus
-campus_star_stats = {}
-for school in businesses:
-	count = 0
-	num_revs = 0
-	av_revs = 0
-	for biz in businesses[school]:
-		num_revs += businesses[school][biz]['review_count']
-		for revs in reviews[biz]:
-			count += 1
-			av_revs += reviews[biz][revs]['stars']
-	campus_star_stats[school] = {'average_reviews': round(av_revs*1.0/count,2), 'reviews_count': num_revs}
-
-count = 0
-av_revs = 0
-for biz in reviews:
-	for revs in reviews[biz]:
-		count += 1
-		av_revs += reviews[biz][revs]['stars']
-averages = {'average_reviews': round(av_revs*1.0/count,2), 'reviews_count': round(count*1.0/29,2)}
-
-final = {}
-for school in campus_star_stats:
-	final[school] = [
-		{"title": "Av. Review", "subtitle": str(campus_star_stats[school]['average_reviews']) + " stars", "ranges": [5], "measures": [campus_star_stats[school]['average_reviews']], "markers": [averages['average_reviews']]},
-		{"title": "Num. of Reviews", "subtitle": str(campus_star_stats[school]['reviews_count']) + " reviews", "ranges": [40000], "measures": [campus_star_stats[school]['reviews_count']], "markers":[averages['reviews_count']]}
-		]
+#average review for each category
+rev_by_cat = {}
+for cats in cat_ref:
+	rev_by_cat[cats] = {'reviews':0, 'count':0}
+for biz in businesses:
+	for cat in businesses[biz]['categories']:
+		if cat in cat_ref:
+			rev_by_cat[cat]['reviews'] += businesses[biz]['stars']
+			rev_by_cat[cat]['count'] += 1
+for cat in rev_by_cat:
+	if rev_by_cat[cat]['reviews'] == 0:
+		rev_by_cat[cat]['average'] = 0
+	else:
+		rev_by_cat[cat]['average'] = round(rev_by_cat[cat]['reviews']*1.0/rev_by_cat[cat]['count'],2)
 
 
-with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/food_businesses_by_campus.json', 'w') as f:
-	json.dump(businesses,f)
-with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/highest_reviews_by_business.json', 'w') as f:
-	json.dump(highest_reviews,f)
-with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/business_star_stats.json', 'w') as f:
-	json.dump(business_star_stats,f)
-with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/campus_star_stats.json', 'w') as f:
-	json.dump(final,f)	
+
+final_rev = {}
+for biz in rev_by_biz:
+	if businesses.get(biz):
+		for cat in businesses[biz]['categories']:
+			if cat in cat_ref:
+				cat_marker = rev_by_cat[cat]['average']
+		final_rev[biz] = [
+			{"title": "Av. Business Review", "subtitle": "Average against all businesses", "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": [averages]},
+			{"title": "Av. Campus Review", "subtitle": "Average against all around this campus", "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": revs_by_campus[campus_key[businesses[biz]['schools'][0]]][0]['markers']},
+			{"title": "Av. Category Review", "subtitle": "Average against all in this food category: " + str(businesses[biz]['categories'][0]), "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": [cat_marker]}
+			]
+
+with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/stats_by_business.json', 'w') as f:
+	json.dump(final_rev,f)

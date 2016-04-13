@@ -20,6 +20,8 @@ d3.json("209_FinalProject_Data/highest_reviews_by_business.json", function(obj) 
 d3.json("209_FinalProject_Data/business_star_stats.json", function(obj) {
   star_stats = obj;
 });
+
+
 function initMap() {
 	d3.csv("209_FinalProject_Data/school_coords.csv", function(obj) {
 	all_data = obj;
