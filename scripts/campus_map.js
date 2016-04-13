@@ -79,8 +79,13 @@ function initMap() {
 							$('#cool' + count).html("<img src='images/cool.png' style='width:30px;height:30px' title='cool'>" + vote_cool);
 							$('#useful' + count).html("<img src='images/useful.png' style='width:30px;height:30px' title='useful'>" + vote_useful);
 							$("#date" + count).text(date)
-							for (i=1; i<=stars; i++) {
-								$("." + count + "star" + i).css('opacity','1').attr('title',stars + ' stars');
+							for (i=1; i<=5; i++) {
+								if (i<=stars) {
+									$("." + count + "star" + i).css('opacity','1').attr('title',stars + ' stars');
+								}
+								else {
+									$("." + count + "star" + i).css('opacity','0.3').attr('title',stars + ' stars');
+								}
 							}
 							count++;
 							}

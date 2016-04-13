@@ -37,6 +37,7 @@ $(document).ready(function() {
 	$(".schoolbutton").click(function() {
 		$('.campus-title').remove();
 		$('#campus').prepend("<h3 class='campus-title'>" + campus_key[$(this).attr('id')] + "</h3>");
+	    update($(this).attr('id'));
 	})
 	$("#comments-panel").hide();
 })
