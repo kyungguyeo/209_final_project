@@ -2,6 +2,8 @@ var data;
 var campus_businesses;
 var highest_reviews;
 var star_stats;
+var current_campus;
+var map;
 var myStyle = [
   {
     featureType: "poi",
@@ -31,7 +33,7 @@ function initMap() {
 		lg = parseFloat(longitude);
 		var latitude = $.grep(all_data, function(e){ return e.Campus == current_campus})[0].Lat;
 		lt = parseFloat(latitude);
-		var map = new google.maps.Map(document.getElementById('map'), {
+		map = new google.maps.Map(document.getElementById('map'), {
 			mapTypeControlOptions: {
 			mapTypeIds: ['mystyle', google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN]
 			},

@@ -40,11 +40,11 @@ d3.bullet = function() {
           w1 = bulletWidth(x1);
 
       // Update the range rects.
-      var range = g.selectAll("rect.range")
+      var range = g.selectAll("rect.businessrange")
           .data(rangez);
 
       range.enter().append("rect")
-          .attr("class", function(d, i) { return "range s" + i; })
+          .attr("class", function(d, i) { return "businessrange s" + i; })
           .attr("width", w0)
           .attr("height", height)
           .attr("x", reverse ? x0 : 0)
@@ -60,11 +60,11 @@ d3.bullet = function() {
           .attr("height", height);
 
       // Update the measure rects.
-      var measure = g.selectAll("rect.measure")
+      var measure = g.selectAll("rect.businessmeasure")
           .data(measurez);
 
       measure.enter().append("rect")
-          .attr("class", function(d, i) { return "measure s" + i; })
+          .attr("class", function(d, i) { return "businessmeasure s" + i; })
           .attr("width", w0)
           .attr("height", height / 3)
           .attr("x", reverse ? x0 : 0)
@@ -82,11 +82,11 @@ d3.bullet = function() {
           .attr("y", height / 3);
 
       // Update the marker lines.
-      var marker = g.selectAll("line.marker")
+      var marker = g.selectAll("line.businessmarker")
           .data(markerz);
 
       marker.enter().append("line")
-          .attr("class", "marker")
+          .attr("class", "businessmarker")
           .attr("x1", x0)
           .attr("x2", x0)
           .attr("y1", height / 6)
@@ -107,14 +107,14 @@ d3.bullet = function() {
       var format = tickFormat || x1.tickFormat(6);
 
       // Update the tick groups.
-      var tick = g.selectAll("g.tick")
+      var tick = g.selectAll("g.businesstick")
           .data(x1.ticks(6), function(d) {
             return this.textContent || format(d);
           });
 
       // Initialize the ticks with the old scale, x0.
       var tickEnter = tick.enter().append("g")
-          .attr("class", "tick")
+          .attr("class", "businesstick")
           .attr("transform", bulletTranslate(x0))
           .style("opacity", 1e-6);
 
@@ -240,12 +240,11 @@ function bulletWidth(x) {
 
 })();
 
-
 var margin = {top: 5, right: 40, bottom: 20, left: 200},
     width = 765 - margin.left - margin.right,
     height = 50 - margin.top - margin.bottom;
 
-  var chart = d3.bullet()
+  var businesschart = d3.bullet()
       .width(width)
       .height(height);
   
@@ -253,38 +252,47 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
   d3.json("../209_FinalProject_Data/stats_by_business.json", function(error, data) {
     if (error) throw error;    
     businesses_data = data;
-    thisdata = data['9OhPfV0C3Q49l5tSre2MuQ'];
+    thisbusinessdata = data['9OhPfV0C3Q49l5tSre2MuQ'];
     var svg = d3.select(".bullet-business").selectAll("svg")
-        .data(thisdata)
+        .data(thisbusinessdata)
       .enter().append("svg")
-        .attr("class", "bullet")
+        .attr("class", "businessbullet")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .call(chart);
+        .call(businesschart);
 
     var title = svg.append("g")
         .style("text-anchor", "end")
         .attr("transform", "translate(-6," + height / 2 + ")");
 
     title.append("text")
-        .attr("class", "title")
+        .attr("class", "businesstitle")
         .text(function(d) { return d.title; });
 
     title.append("text")
-      .attr("class", "subtitle")
+      .attr("class", "businesssubtitle")
       .attr("dy", "1em")
       .attr("style","font-style: italic;")
       .text(function(d) { return d.subtitle; });
 
 
     //Don't know how to update!!!
+    window.map.addListener('click', (function(marker, i) {
+          return function() {
+            biz_id = campus_businesses[current_campus][i]['business_id'];
+            thisbusinessdata[0].measures = businesses_data[biz_id][0].measures;
+            thisbusinessdata[1].measures = businesses_data[biz_id][1].measures;
+            thisbusinessdata[2].measures = businesses_data[biz_id][2].measures;
+            svg.data(thisbusinessdata).call(businesschart.duration(1000));
+          }
+        }));
     // d3.selectAll(".schoolbutton").on("click", function() {
     //   campus = $(this).attr('id');
-    //   thisdata[0].measures = data[campus][0].measures;
-    //   thisdata[1].measures = data[campus][1].measures;
-    //   thisdata[2].measures = data[campus][2].measures;
-    //   svg.data(thisdata).call(chart.duration(1000));
+    //   thisbusinessdata[0].measures = data[campus][0].measures;
+    //   thisbusinessdata[1].measures = data[campus][1].measures;
+    //   thisbusinessdata[2].measures = data[campus][2].measures;
+    //   svg.data(thisbusinessdata).call(businesschart.duration(1000));
     // });
   });

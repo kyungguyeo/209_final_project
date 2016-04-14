@@ -156,4 +156,22 @@ html, body {height: 100%;}
 .campusbullet .campusmeasure { fill: darkorange; }
 .campusbullet .campustitle { font-size: 14px; }
 
+/*Business Bullet Chart Styles*/
+
+.bullet-business {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 700px;
+  height: 120px;
+  margin: 0;
+}
+
+.businessbullet { font: 10px sans-serif; }
+.businessbullet .businessmarker { stroke: #000; stroke-width: 2px; }
+.businessbullet .businesstick line { stroke: #666; stroke-width: .5px; }
+.businessbullet .businessrange { fill: #eee; }
+.businessbullet .businessmeasure { fill: darkorange; }
+.businessbullet .businesstitle { font-size: 14px; }
+
 
