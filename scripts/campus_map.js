@@ -3,7 +3,7 @@ var campus_businesses;
 var highest_reviews;
 var star_stats;
 var current_campus;
-var map;
+var businesses_data;
 var myStyle = [
   {
     featureType: "poi",
@@ -13,14 +13,17 @@ var myStyle = [
     ]
   }
 ];
-d3.json("209_FinalProject_Data/food_businesses_by_campus.json", function(obj) {
+d3.json("../209_FinalProject_Data/food_businesses_by_campus.json", function(obj) {
   campus_businesses = obj;
 });
-d3.json("209_FinalProject_Data/highest_reviews_by_business.json", function(obj) {
+d3.json("../209_FinalProject_Data/highest_reviews_by_business.json", function(obj) {
   highest_reviews = obj;
 });
-d3.json("209_FinalProject_Data/business_star_stats.json", function(obj) {
+d3.json("../209_FinalProject_Data/business_star_stats.json", function(obj) {
   star_stats = obj;
+});
+d3.json("../209_FinalProject_Data/stats_by_business.json", function(obj) {
+	businesses_data = obj;
 });
 
 
@@ -66,10 +69,18 @@ function initMap() {
 						infoWindow.open(map, marker);
 						$('.biz-title').remove();
 						$('.biz-photo').remove();
-						$("#biz").prepend("<img src=" + campus_data[i]["photo_url"] + " style='width:60%;height:25%' class='biz-photo'>");
+						$("#biz").prepend("<img src=" + campus_data[i]["photo_url"] + " style='width:80%;height:60%' class='biz-photo'>");
 						$("#business").prepend("<h3 class='biz-title'>" + campus_data[i]["name"] + "</h3>");
-						$(".review-count").html("<h3> Reviews by Star Rating: <small>" + campus_data[i]["review_count"] + " reviews</small></h3>");
+						$(".review-count").html("<p class=biz-subtitle  style='margin-top: 40px;'> Reviews by Star Rating: <small>" + campus_data[i]["review_count"] + " reviews</small></p>");
 						biz_revs = highest_reviews[biz_id];
+						$('.bullet-business p').remove();
+						$('.bullet-business').prepend("<p class='biz-subtitle'>Business Average Star Rating vs ...</p>"); //add title to bulletchart
+						svg = d3.select(".bullet-business").selectAll("svg");
+						svg.data(businesses_data[biz_id]).call(businesschart.duration(1000)); //change bulletcharts
+						$('.businesssubtitle').eq(0).text(businesses_data[biz_id][0].subtitle);
+						$('.businesssubtitle').eq(1).text(businesses_data[biz_id][1].subtitle);
+						$('.businesssubtitle').eq(2).text(businesses_data[biz_id][2].subtitle);
+						console.log(businesses_data[biz_id]);
 						count = 1; //for getting the right panel id
 						for (i in biz_revs) {
 							review_text = biz_revs[i]['text'];

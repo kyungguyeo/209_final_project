@@ -91,9 +91,9 @@ for biz in rev_by_biz:
 			if cat in cat_ref:
 				cat_marker = rev_by_cat[cat]['average']
 		final_rev[biz] = [
-			{"title": "Av. Business Review", "subtitle": "Average against all businesses", "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": [averages]},
-			{"title": "Av. Campus Review", "subtitle": "Average against all around this campus", "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": revs_by_campus[campus_key[businesses[biz]['schools'][0]]][0]['markers']},
-			{"title": "Av. Category Review", "subtitle": "Average against all in this food category: " + str(businesses[biz]['categories'][0]), "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": [cat_marker]}
+			{"title": "All Businesses", "subtitle": str(round(rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count'],2)) + " vs " + str(averages), "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": [averages]},
+			{"title": "All Campus", "subtitle": str(round(rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count'],2)) + " vs " + str(revs_by_campus[campus_key[businesses[biz]['schools'][0]]][0]['measures'][0]), "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": revs_by_campus[campus_key[businesses[biz]['schools'][0]]][0]['markers']},
+			{"title": "Category (" + str(businesses[biz]['categories'][0]) + ")", "subtitle": str(round(rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count'],2)) + " vs " + str(cat_marker), "ranges": [5], "measures": [rev_by_biz[biz]['review']*1.0/rev_by_biz[biz]['count']], "markers": [cat_marker]}
 			]
 
 with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/stats_by_business.json', 'w') as f:

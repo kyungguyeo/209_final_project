@@ -106,7 +106,7 @@ d3.tsv("../209_FinalProject_Data/campus_histogram_data.tsv", function(error, dat
  svg.append("text")
         .attr("x", (hist_width / 2))             
         .attr("y", 0 - (hist_margin.top / 3))
-        .attr("text-anchor", "middle")  
+        .attr("text-anchor", "end")  
         .style("font-size", "16px") 
         .style("text-decoration", "underline")  
         .text("Top 10 Food Categories for " + campus_key[a] );

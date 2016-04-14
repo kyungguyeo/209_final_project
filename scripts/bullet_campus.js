@@ -285,7 +285,7 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
       thiscampusdata[1].measures = data[campus][1].measures;
       thiscampusdata[1].subtitle = data[campus][1].subtitle;
       svg.data(thiscampusdata).call(chart_campus.duration(1000));
-      $('.campussubtitle').first().text(thiscampusdata[0].subtitle);
-      $('.campussubtitle').last().text(thiscampusdata[1].subtitle);
+      $('.campussubtitle').eq(0).text(thiscampusdata[0].subtitle);
+      $('.campussubtitle').eq(1).text(thiscampusdata[1].subtitle);
     });
   });

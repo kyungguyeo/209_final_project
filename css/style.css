@@ -163,7 +163,7 @@ html, body {height: 100%;}
   margin: auto;
   position: relative;
   width: 700px;
-  height: 120px;
+  height: 190px;
   margin: 0;
 }
 
@@ -174,4 +174,8 @@ html, body {height: 100%;}
 .businessbullet .businessmeasure { fill: darkorange; }
 .businessbullet .businesstitle { font-size: 14px; }
 
-
+.biz-subtitle {
+    font-size: 16px;
+    text-decoration: underline;
+    height: 35px;
+}

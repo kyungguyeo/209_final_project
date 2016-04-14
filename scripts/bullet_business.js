@@ -277,22 +277,4 @@ var margin = {top: 5, right: 40, bottom: 20, left: 200},
       .attr("style","font-style: italic;")
       .text(function(d) { return d.subtitle; });
 
-
-    //Don't know how to update!!!
-    window.map.addListener('click', (function(marker, i) {
-          return function() {
-            biz_id = campus_businesses[current_campus][i]['business_id'];
-            thisbusinessdata[0].measures = businesses_data[biz_id][0].measures;
-            thisbusinessdata[1].measures = businesses_data[biz_id][1].measures;
-            thisbusinessdata[2].measures = businesses_data[biz_id][2].measures;
-            svg.data(thisbusinessdata).call(businesschart.duration(1000));
-          }
-        }));
-    // d3.selectAll(".schoolbutton").on("click", function() {
-    //   campus = $(this).attr('id');
-    //   thisbusinessdata[0].measures = data[campus][0].measures;
-    //   thisbusinessdata[1].measures = data[campus][1].measures;
-    //   thisbusinessdata[2].measures = data[campus][2].measures;
-    //   svg.data(thisbusinessdata).call(businesschart.duration(1000));
-    // });
   });

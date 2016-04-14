@@ -37,7 +37,8 @@ $(document).ready(function() {
 	$(".schoolbutton").click(function() {
 		$('.campus-title').remove();
 		$('#campus').prepend("<h3 class='campus-title'>" + campus_key[$(this).attr('id')] + "</h3>");
+		$('.bullet-campus p').remove();
+		$('.bullet-campus').prepend("<p class='biz-subtitle'>Review Stats vs the Average</p>");
 	    update($(this).attr('id'));
 	})
-	$("#comments-panel").hide();
 })
