@@ -59,6 +59,7 @@ campus_key = {
       .append("g")
       .attr("transform", "translate(" + hist_margin.left + "," + hist_margin.top + ")");      
 
+  $('.histogram-campus svg').attr("style", "padding-left:150px;")
   update('cal');
 
 function update(data_in) {
@@ -77,6 +78,7 @@ d3.tsv("../209_FinalProject_Data/campus_histogram_data.tsv", function(error, dat
   x.domain(data.map(function(d) { return d[a]; }));
   y.domain([0, d3.max(data, function(d) { return d[b]; })]);  //Setting range for y
 
+  svg = d3.select(".histogram-campus").selectAll("svg");
   
     var trans = d3.select(".histogram-campus").transition().duration(200);
         delay = function(d, i) { return i * 5; };
@@ -99,17 +101,6 @@ d3.tsv("../209_FinalProject_Data/campus_histogram_data.tsv", function(error, dat
              .attr("height", function(d) { return hist_height - y(d[b]); });
               //.duration(850)
               //.delay(delay);   //- y(d[b]
-
-
- svg.select("text").remove();  //Remove Title
-
- svg.append("text")
-        .attr("x", (hist_width / 2))             
-        .attr("y", 0 - (hist_margin.top / 3))
-        .attr("text-anchor", "end")  
-        .style("font-size", "16px") 
-        .style("text-decoration", "underline")  
-        .text("Top 10 Food Categories for " + campus_key[a] );
 
  svg.select(".x.axis").remove(); //Remove previous x axis
 

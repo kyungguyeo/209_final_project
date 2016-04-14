@@ -39,6 +39,8 @@ $(document).ready(function() {
 		$('#campus').prepend("<h3 class='campus-title'>" + campus_key[$(this).attr('id')] + "</h3>");
 		$('.bullet-campus p').remove();
 		$('.bullet-campus').prepend("<p class='biz-subtitle'>Review Stats vs the Average</p>");
+		$('.histogram-campus p').remove();
+		$('.histogram-campus').prepend("<p class='biz-subtitle'>Top 10 Food Categories for " + campus_key[$(this).attr('id')]  + "</p>");
 	    update($(this).attr('id'));
 	})
 })

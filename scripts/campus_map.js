@@ -38,13 +38,13 @@ function initMap() {
 		lt = parseFloat(latitude);
 		map = new google.maps.Map(document.getElementById('map'), {
 			mapTypeControlOptions: {
-			mapTypeIds: ['mystyle', google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN]
+			mapTypeIds: ['mystyle']
 			},
 			center: {lat: lg, lng: lt},//new google.maps.LatLng(latitude, longitude),
 			zoom: 12,
 			mapTypeId: 'mystyle'
 			});
-		map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
+		map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'Map' }));
 		// var marker = new google.maps.Marker({
 		// 	position: {lat: lg, lng: lt},
 		// 	map: map
@@ -57,21 +57,21 @@ function initMap() {
 				var marker = new google.maps.Marker({
 					position: myLatLng,
 					map: map,
-					icon: 'icons/' + current_campus + '.ico'
+					icon: 'icons/' + current_campus + '.ico',
+					biz_id: i
 					});
 				bounds.extend(marker.getPosition());
 				var infoWindow = new google.maps.InfoWindow();
 				google.maps.event.addListener(marker, 'click', (function(marker, i) {
 					return function() {
-						$("#comments-panel").show();
-						biz_id = campus_data[i]['business_id'];
-						infoWindow.setContent(campus_data[i]['name']);
+						biz_id = marker.biz_id;
+						infoWindow.setContent(campus_data[biz_id]['name']);
 						infoWindow.open(map, marker);
 						$('.biz-title').remove();
 						$('.biz-photo').remove();
-						$("#biz").prepend("<img src=" + campus_data[i]["photo_url"] + " style='width:80%;height:60%' class='biz-photo'>");
-						$("#business").prepend("<h3 class='biz-title'>" + campus_data[i]["name"] + "</h3>");
-						$(".review-count").html("<p class=biz-subtitle  style='margin-top: 40px;'> Reviews by Star Rating: <small>" + campus_data[i]["review_count"] + " reviews</small></p>");
+						$("#biz").prepend("<img src=" + campus_data[biz_id]["photo_url"] + " style='width:80%;height:60%' class='biz-photo'>");
+						$("#business").prepend("<h3 class='biz-title'>" + campus_data[biz_id]["name"] + "</h3>");
+						$(".review-count").html("<p class=biz-subtitle  style='margin-top: 40px;'> Reviews by Star Rating: <small>" + campus_data[biz_id]["review_count"] + " reviews</small></p>");
 						biz_revs = highest_reviews[biz_id];
 						$('.bullet-business p').remove();
 						$('.bullet-business').prepend("<p class='biz-subtitle'>Business Average Star Rating vs ...</p>"); //add title to bulletchart
@@ -79,8 +79,8 @@ function initMap() {
 						svg.data(businesses_data[biz_id]).call(businesschart.duration(1000)); //change bulletcharts
 						$('.businesssubtitle').eq(0).text(businesses_data[biz_id][0].subtitle);
 						$('.businesssubtitle').eq(1).text(businesses_data[biz_id][1].subtitle);
+						$('.businesstitle').eq(2).text(businesses_data[biz_id][2].title);
 						$('.businesssubtitle').eq(2).text(businesses_data[biz_id][2].subtitle);
-						console.log(businesses_data[biz_id]);
 						count = 1; //for getting the right panel id
 						for (i in biz_revs) {
 							review_text = biz_revs[i]['text'];
@@ -106,7 +106,7 @@ function initMap() {
 							}
 						//histogram of star reviews
 						
-						$("html, body").scrollTop($('#page3').offset().top);
+						$("html, body").scrollTop($('#business').offset().top);
 						}
 					})(marker, i));
 				}
