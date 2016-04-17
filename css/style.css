@@ -179,3 +179,24 @@ html, body {height: 100%;}
     text-decoration: underline;
     height: 35px;
 }
+
+/*Business Histogram*/
+
+.business-bar {
+  fill: darkorange;
+}
+
+.business-bar:hover {
+  fill: steelblue;
+}
+
+.business-x axis {
+  font: 15 px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

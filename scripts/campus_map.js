@@ -81,6 +81,7 @@ function initMap() {
 						$('.businesssubtitle').eq(1).text(businesses_data[biz_id][1].subtitle);
 						$('.businesstitle').eq(2).text(businesses_data[biz_id][2].title);
 						$('.businesssubtitle').eq(2).text(businesses_data[biz_id][2].subtitle);
+						businessupdate(biz_id);
 						count = 1; //for getting the right panel id
 						for (i in biz_revs) {
 							review_text = biz_revs[i]['text'];
