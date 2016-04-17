@@ -190,12 +190,12 @@ html, body {height: 100%;}
   fill: steelblue;
 }
 
-.business-x axis {
+.business-xaxis {
   font: 15 px sans-serif;
 }
 
-.axis path,
-.axis line {
+.business-xaxis path, .business-yaxis path,
+.business-xaxis line, .business-yaxis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
