@@ -25,41 +25,70 @@
   display: none;
 }
 
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
 </style>
-<a href="#campus" class="schoolbutton" id="umich" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/umich.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="penn" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/penn.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="harvard" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/harvard.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="cal" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/cal.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="umass" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/umass.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="vt" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/vt.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="unc" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/unc.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="uw" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/uw.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="usc" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/usc.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="ucla" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/ucla.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="ucsd" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/ucsd.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="ill" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/ill.png" style="width:9%;height:9"></a>
-<a href="#campus" class="schoolbutton" id="purdue" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/purdue.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="princeton" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/princeton.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="mit" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/mit.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="harveymudd" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/harveymudd.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="stanford" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/stanford.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="carnegie" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/carnegie.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="columbia" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/columbia.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="cornell" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/cornell.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="gt" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/gt.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="rice" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/rice.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="rensselaer" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/rensselaer.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="brown" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/brown.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="caltech" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/caltech.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="cp" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/cp.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="maryland" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/maryland.png" style="width:9%;height:9%"></a>
-<a href="#campus" class="schoolbutton" id="waterloo" OnClick="update(this.id)"><img src="/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/images/waterloo.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="umich" OnClick="update(this.id)"><img src="images/umich.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="penn" OnClick="update(this.id)"><img src="images/penn.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="harvard" OnClick="update(this.id)"><img src="images/harvard.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="cal" OnClick="update(this.id)"><img src="images/cal.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="umass" OnClick="update(this.id)"><img src="images/umass.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="vt" OnClick="update(this.id)"><img src="images/vt.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="unc" OnClick="update(this.id)"><img src="images/unc.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="uw" OnClick="update(this.id)"><img src="images/uw.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="usc" OnClick="update(this.id)"><img src="images/usc.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="ucla" OnClick="update(this.id)"><img src="images/ucla.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="ucsd" OnClick="update(this.id)"><img src="images/ucsd.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="ill" OnClick="update(this.id)"><img src="images/ill.png" style="width:9%;height:9"></a>
+<a href="#campus" class="schoolbutton" id="purdue" OnClick="update(this.id)"><img src="images/purdue.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="princeton" OnClick="update(this.id)"><img src="images/princeton.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="mit" OnClick="update(this.id)"><img src="images/mit.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="harveymudd" OnClick="update(this.id)"><img src="images/harveymudd.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="stanford" OnClick="update(this.id)"><img src="images/stanford.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="carnegie" OnClick="update(this.id)"><img src="images/carnegie.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="columbia" OnClick="update(this.id)"><img src="images/columbia.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="cornell" OnClick="update(this.id)"><img src="images/cornell.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="gt" OnClick="update(this.id)"><img src="images/gt.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="rice" OnClick="update(this.id)"><img src="images/rice.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="rensselaer" OnClick="update(this.id)"><img src="images/rensselaer.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="brown" OnClick="update(this.id)"><img src="images/brown.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="caltech" OnClick="update(this.id)"><img src="images/caltech.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="cp" OnClick="update(this.id)"><img src="images/cp.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="maryland" OnClick="update(this.id)"><img src="images/maryland.png" style="width:9%;height:9%"></a>
+<a href="#campus" class="schoolbutton" id="waterloo" OnClick="update(this.id)"><img src="images/waterloo.png" style="width:9%;height:9%"></a>
 <body>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
 
-//Beginning of d3 code
-var margin = {top: 20, right: 20, bottom: 30, left: 150},
+//Beginning of d3 code, set up SVG
+var margin = {top: 20, right: 20, bottom: 55, left: 150},
     width = 960 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
     padding = -150;
@@ -79,6 +108,14 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .ticks(10);
 
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<span style='color:yellow'>" + " " + d[a] + "</span><strong> Reviews: </strong> <span style='color:lightblue'>" + Math.round(d[b])+ "</span>";
+  })    
+
+
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -87,7 +124,11 @@ var svg = d3.select("body").append("svg")
 
 update('cal')  //Initial output when user first launch the site
 
+svg.call(tip);
+
+//Take in school id and update the data then histogram based on the id
 function update(data_in) {
+
 
 d3.tsv("data.tsv", function(error, data) {
   
@@ -105,11 +146,11 @@ d3.tsv("data.tsv", function(error, data) {
   y.domain([0, d3.max(data, function(d) { return d[b]; })]);  //Setting range for y
 
   
-    var trans = d3.select("body").transition().duration(200);
+
+  var trans = d3.select("body").transition().duration(200);
         delay = function(d, i) { return i * 5; };
       
-      var rect = svg.selectAll(".bar")
-                    .data(data);
+  var rect = svg.selectAll(".bar").data(data);
 
 
            //re-append chart with new data         
@@ -117,6 +158,8 @@ d3.tsv("data.tsv", function(error, data) {
 
           rect
              .attr("class", "bar")
+             .on('mouseover', tip.show)
+             .on('mouseout', tip.hide)
              .attr("x", function(d) { return x(d[a]); })
              .attr("width", x.rangeBand())
              .attr("y", function(d) { return y(d[b]); })
@@ -124,8 +167,9 @@ d3.tsv("data.tsv", function(error, data) {
              .delay(function(d, i) { return i * 100; })
              .duration(200)
              .attr("height", function(d) { return height - y(d[b]); });
-              //.duration(850)
-              //.delay(delay);   //- y(d[b]
+             
+             
+ 
 
 
  svg.select("text").remove();  //Remove Title
@@ -143,7 +187,13 @@ d3.tsv("data.tsv", function(error, data) {
  svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);     
+    .call(xAxis)
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", "rotate(-25)" );
+    
 
 
  svg.select(".y.axis").remove(); //Remove previous y-axis
@@ -157,7 +207,7 @@ d3.tsv("data.tsv", function(error, data) {
     .attr("dy", ".90em")
     .style("font-size", "16px")
     .style("text-anchor", "end")
-    .text("Average Reviews ");
+    .text("Average Reviews");
 
 
 //remove existing image when doing the transition
