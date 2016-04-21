@@ -27,6 +27,10 @@ body {
     line-height: 6.8;
 }
 
+#page0 {
+  height: 700px;
+}
+
 #page1 {
     height: 350px;
 }
@@ -36,7 +40,7 @@ body {
 }
 
 #page3 {
-    height: 1400;
+    height: 1600;
     padding-top: 100px;
 }
 
@@ -89,11 +93,22 @@ body {
     transition-delay: 0s;
 }
 
-#campus, #business {
+#campus, #business, #top {
     padding-top: 52px;
 }
 
+.jumbotron {
+  text-align: center;
+  padding: 48px 0;
+  margin: 155px 0;
+  height: 296px;
+  width: 1120px;
+}
 
+#page0 .container {
+  background-image: url('../images/food_background.jpg');
+  height: 616px;
+}
 
 html, body {height: 100%;}
 
@@ -135,6 +150,33 @@ html, body {height: 100%;}
 
 .x.axis path {
   display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
 }
 
 

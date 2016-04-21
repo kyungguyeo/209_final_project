@@ -98,3 +98,5 @@ for biz in rev_by_biz:
 
 with open('/Users/johnnyyeo/Documents/MIDS/w209/209_final_project/209_FinalProject_Data/stats_by_business.json', 'w') as f:
 	json.dump(final_rev,f)
+with open('/Users/johnnyyeo/Documents/MIDS/w209/judofighter25.github.io/209_FinalProject_Data/rev_by_biz.json', 'w') as f:
+	json.dump(rev_by_biz,f)

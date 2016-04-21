@@ -25,6 +25,9 @@ d3.json("../209_FinalProject_Data/business_star_stats.json", function(obj) {
 d3.json("../209_FinalProject_Data/stats_by_business.json", function(obj) {
 	businesses_data = obj;
 });
+d3.json("../209_FinalProject_Data/rev_by_biz.json", function(obj) {
+	rev_by_biz = obj;
+})
 
 
 function initMap() {
@@ -71,7 +74,7 @@ function initMap() {
 						$('.biz-photo').remove();
 						$("#biz").prepend("<img src=" + campus_data[biz_id]["photo_url"] + " style='width:80%;height:60%' class='biz-photo'>");
 						$("#business").prepend("<h3 class='biz-title'>" + campus_data[biz_id]["name"] + "</h3>");
-						$(".review-count").html("<p class=biz-subtitle  style='margin-top: 40px;'> Reviews by Star Rating: <small>" + campus_data[biz_id]["review_count"] + " reviews</small></p>");
+						$(".review-count").html("<p class=biz-subtitle  style='margin-top: 40px;'> Reviews by Star Rating: <small>" + rev_by_biz[biz_id]['count'] + " reviews</small></p>");
 						biz_revs = highest_reviews[biz_id];
 						$('.bullet-business p').remove();
 						$('.bullet-business').prepend("<p class='biz-subtitle'>Business Average Star Rating vs ...</p>"); //add title to bulletchart
